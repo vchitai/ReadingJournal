@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="@dimen/dialog_min_width"
+    android:padding="@dimen/basic_padding_medium">
+    <TextView
+        android:id="@+id/add_comment_dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/basic_padding_small"
+        android:layout_marginLeft="@dimen/basic_padding_small"
+        android:layout_marginTop="@dimen/basic_padding_small"
+        android:text="@string/addcomment"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/basic_text_size_medium" />
+
+    <EditText
+        android:id="@+id/add_comment_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/add_comment_dialog_title"
+        android:layout_marginLeft="@dimen/basic_padding_small"
+        android:layout_marginStart="@dimen/basic_padding_small" />
+
+    <LinearLayout
+        android:id="@+id/page_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/add_comment_field"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/basic_padding_small"
+            android:layout_marginLeft="@dimen/basic_padding_small"
+            android:layout_marginTop="@dimen/basic_padding_small"
+            android:text="@string/page"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/basic_text_size_medium" />
+
+        <EditText
+            android:id="@+id/page_edit_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/basic_padding_small"
+            android:inputType="number"
+            android:minWidth="@dimen/page_edit_text_min_width" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/page_field">
+        <Button
+            android:id="@+id/add_comment_dialog_discard_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="@string/action_discard"
+            android:textColor="@color/colorAccent" />
+
+        <Button
+            android:id="@+id/add_comment_dialog_save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="@string/action_save"
+            android:textColor="@color/colorAccent" />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Reading Journal</string>
+    <string name="title">Title</string>
+    <string name="author">Author</string>
+    <string name="desc">Description</string>
+    <string name="rating">Rating</string>
+    <string name="comment">Comment</string>
+    <string name="page">Page</string>
+    <string name="lastestcomment">Lastest Comment</string>
+    <string name="addcomment">Add Comment</string>
+    <string name="empty_title">You have no book yet</string>
+    <string name="empty_subtitle">Get started by adding a book</string>
+    <string name="action_save">Save</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_discard">Discard</string>
+</resources>

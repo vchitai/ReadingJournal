@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/commentBoxColor"
+    android:minHeight="100dp"
+    android:padding="@dimen/basic_padding_small">
+
+    <TextView
+        android:id="@+id/lastest_comment_holder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/basic_padding_medium"
+        android:paddingEnd="@dimen/basic_padding_medium"
+        android:paddingLeft="@dimen/basic_padding_medium"
+        android:paddingTop="@dimen/basic_padding_small"
+        android:text="@string/lastestcomment"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/basic_text_size_medium" />
+
+    <TextView
+        android:id="@+id/comment_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:paddingStart="@dimen/basic_padding_medium"
+        android:paddingEnd="@dimen/basic_padding_medium"
+        android:paddingLeft="@dimen/basic_padding_medium"
+        android:paddingTop="@dimen/basic_padding_small"
+        android:text="@string/page"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/basic_text_size_medium" />
+
+    <TextView
+        android:id="@+id/lastest_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lastest_comment_holder"
+        android:paddingStart="@dimen/basic_padding_medium"
+        android:paddingEnd="@dimen/basic_padding_medium"
+        android:paddingLeft="@dimen/basic_padding_medium"
+        android:paddingTop="@dimen/basic_padding_small"
+        android:text="@string/lastestcomment"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/basic_text_size_small" />
+
+    <ImageButton
+        android:id="@+id/delete_button"
+        android:layout_width="@dimen/basic_button_size_small"
+        android:layout_height="@dimen/basic_button_size_small"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/lastest_comment"
+        android:layout_marginStart="@dimen/basic_padding_small"
+        android:layout_marginLeft="@dimen/basic_padding_small"
+        android:layout_marginTop="@dimen/basic_padding_small"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_action_discard"
+        android:tint="@android:color/black" />
+
+    <ImageButton
+        android:id="@+id/edit_button"
+        android:layout_width="@dimen/basic_button_size_small"
+        android:layout_height="@dimen/basic_button_size_small"
+        android:layout_below="@id/lastest_comment"
+        android:layout_marginStart="@dimen/basic_padding_small"
+        android:layout_marginLeft="@dimen/basic_padding_small"
+        android:layout_marginTop="@dimen/basic_padding_small"
+        android:layout_toLeftOf="@id/delete_button"
+        android:layout_toStartOf="@id/delete_button"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_action_edit"
+        android:tint="@android:color/black" />
+
+    <ImageButton
+        android:id="@+id/add_comment_button"
+        android:layout_width="@dimen/basic_button_size_small"
+        android:layout_height="@dimen/basic_button_size_small"
+        android:layout_below="@id/lastest_comment"
+        android:layout_marginStart="@dimen/basic_padding_small"
+        android:layout_marginLeft="@dimen/basic_padding_small"
+        android:layout_marginTop="@dimen/basic_padding_small"
+        android:layout_toStartOf="@id/edit_button"
+        android:layout_toLeftOf="@id/edit_button"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_action_new_event"
+        android:tint="@android:color/black" />
+</RelativeLayout>
