@@ -53,6 +53,7 @@
         android:id="@+id/edit_book_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/basic_padding_small"
         android:layout_marginStart="@dimen/basic_padding_small"
         android:layout_marginLeft="@dimen/basic_padding_small"
         android:layout_marginTop="@dimen/basic_padding_small"
