@@ -8,8 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.chita.readingjournal.R;
-
 import java.util.ArrayList;
 
 public class CommentAdapter extends ArrayAdapter<Comment> {
@@ -38,7 +36,7 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
             pageTextView.setVisibility(View.VISIBLE);
         }
         TextView detailTextView = (TextView) listItemView.findViewById(R.id.comment_item_detail);
-        detailTextView.setText(currentComment.getValue());
+        detailTextView.setText(currentComment.getDetail());
         return listItemView;
     }
 }

@@ -7,8 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ExpandableListView;
 
-import com.example.chita.readingjournal.R;
-
 public class MainActivity extends AppCompatActivity {
     private static BookAdapter listAdapter;
     private ExpandableListView expListView;

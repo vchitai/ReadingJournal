@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.chita.readingjournal">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.readingjournal">
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
@@ -17,6 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name="com.example.readingjournal.EditorActivity"
             android:label="Editor"
@@ -27,14 +29,15 @@
                 android:value=".MainActivity" />
         </activity>
 
-        <provider
-            android:name="com.example.readingjournal.data.BookProvider"
-            android:authorities="com.example.chita.readingjournal"
-            android:exported="false" />
-
         <activity
             android:name="com.example.readingjournal.ShowBookActivity"
-            android:parentActivityName="com.example.readingjournal.MainActivity"></activity>
+            android:parentActivityName="com.example.readingjournal.MainActivity"/>
+
+        <provider
+            android:name="com.example.readingjournal.data.BookProvider"
+            android:authorities="com.example.readingjournal"
+            android:exported="false" />
+
     </application>
 
 </manifest>

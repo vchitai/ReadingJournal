@@ -22,27 +22,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.chita.readingjournal.R;
 import com.example.readingjournal.data.BookContract;
 
 import java.util.ArrayList;
 
 public class BookAdapter extends BaseExpandableListAdapter {
-
     private Context mContext;
-    private ArrayList<Book> mBookList;
+    private ArrayList<Book> mBookList = new ArrayList<>();
 
     public BookAdapter(Context context) {
         this.mContext = context;
-        if (mBookList == null) {
-            mBookList = new ArrayList<Book>();
-        }
         loadDatabase();
     }
 
     private void loadDatabase() {
         if (mBookList == null) {
-            mBookList = new ArrayList<Book>();
+            mBookList = new ArrayList<>();
         }
 
         String[] projection = {
@@ -51,6 +46,7 @@ public class BookAdapter extends BaseExpandableListAdapter {
                 BookContract.BookEntry.COLUMN_BOOK_AUTHOR,
                 BookContract.BookEntry.COLUMN_BOOK_DESCRIPTION,
                 BookContract.BookEntry.COLUMN_BOOK_COMMENTS,
+                BookContract.BookEntry.COLUMN_BOOK_STATUS,
                 BookContract.BookEntry.COLUMN_BOOK_RATING
         };
 
@@ -60,6 +56,7 @@ public class BookAdapter extends BaseExpandableListAdapter {
             int titleColumnIndex = cursor.getColumnIndex(BookContract.BookEntry.COLUMN_BOOK_TITLE);
             int authorColumnIndex = cursor.getColumnIndex(BookContract.BookEntry.COLUMN_BOOK_AUTHOR);
             int descriptionColumnIndex = cursor.getColumnIndex(BookContract.BookEntry.COLUMN_BOOK_DESCRIPTION);
+            int statusColumnIndex = cursor.getColumnIndex(BookContract.BookEntry.COLUMN_BOOK_STATUS);
             int ratingColumnIndex = cursor.getColumnIndex(BookContract.BookEntry.COLUMN_BOOK_RATING);
             int commentsColumnIndex = cursor.getColumnIndex(BookContract.BookEntry.COLUMN_BOOK_COMMENTS);
 
@@ -69,8 +66,16 @@ public class BookAdapter extends BaseExpandableListAdapter {
                 String currentAuthor = cursor.getString(authorColumnIndex);
                 String currentDescription = cursor.getString(descriptionColumnIndex);
                 String currentComments = cursor.getString(commentsColumnIndex);
-                int currentRating = cursor.getInt(ratingColumnIndex);
-                mBookList.add(new Book(currentID, currentTitle, currentAuthor, currentDescription, currentComments, currentRating));
+                int currentStatus = cursor.getInt(statusColumnIndex);
+                boolean currentStatusB = false;
+                if (currentStatus == 0) {
+                    currentStatusB = false;
+                } else {
+                    currentStatusB = true;
+                }
+                float currentRating = cursor.getInt(ratingColumnIndex);
+
+                mBookList.add(new Book(currentID, currentTitle, currentAuthor, currentDescription, currentComments, currentStatusB, currentRating));
             }
         } finally {
             cursor.close();
@@ -81,32 +86,33 @@ public class BookAdapter extends BaseExpandableListAdapter {
         mBookList.remove(order);
     }
 
-    public void saveBook(int currentId, Uri currentUri, String title, String author, String description, int rating) {
+    public void saveBook(int currentId, Uri currentUri, String title, String author, String description, boolean status, float rating) {
         if (title != null) {
-            String comments = new String();
+            String comments = "";
             ContentValues values = new ContentValues();
             values.put(BookContract.BookEntry.COLUMN_BOOK_TITLE, title);
             values.put(BookContract.BookEntry.COLUMN_BOOK_AUTHOR, author);
             values.put(BookContract.BookEntry.COLUMN_BOOK_DESCRIPTION, description);
+            values.put(BookContract.BookEntry.COLUMN_BOOK_STATUS, status);
             values.put(BookContract.BookEntry.COLUMN_BOOK_RATING, rating);
 
             if (currentUri == null) {
                 Uri newUri = mContext.getContentResolver().insert(BookContract.BookEntry.CONTENT_URI, values);
-                mBookList.add(new Book(BookContract.Working_ID, title, author, description, comments, rating));
 
                 if (newUri == null) {
                     Toast.makeText(mContext, "Error with saving book", Toast.LENGTH_SHORT).show();
                 } else {
+                    mBookList.add(new Book(BookContract.WORKING_ID, title, author, description, comments, status, rating));
                     Toast.makeText(mContext, "Book saved", Toast.LENGTH_SHORT).show();
                 }
                 notifyDataSetChanged();
             } else {
-                mBookList.get(currentId).editBook(title, author, description, rating);
                 int rowAffected = mContext.getContentResolver().update(currentUri, values, null, null);
 
                 if (rowAffected == 0) {
                     Toast.makeText(mContext, "Error with saving book", Toast.LENGTH_SHORT).show();
                 } else {
+                    mBookList.get(currentId).editBook(title, author, description, status, rating);
                     Toast.makeText(mContext, "Book saved", Toast.LENGTH_SHORT).show();
                 }
                 notifyDataSetChanged();
@@ -116,7 +122,6 @@ public class BookAdapter extends BaseExpandableListAdapter {
 
     public void addComment(int currentId, Uri currentUri, String comment, int page) {
         Book currentBook = mBookList.get(currentId);
-        mBookList.get(currentId).addComment(comment, page);
         ContentValues value = new ContentValues();
         value.put(BookContract.BookEntry.COLUMN_BOOK_COMMENTS, currentBook.encodeComment());
         int rowAffected = mContext.getContentResolver().update(currentUri, value, null, null);
@@ -124,6 +129,7 @@ public class BookAdapter extends BaseExpandableListAdapter {
         if (rowAffected == 0) {
             Toast.makeText(mContext, "Error with saving comment", Toast.LENGTH_SHORT).show();
         } else {
+            mBookList.get(currentId).addComment(comment, page);
             Toast.makeText(mContext, "Comment saved", Toast.LENGTH_SHORT).show();
         }
     }
@@ -158,7 +164,7 @@ public class BookAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int groupPosition, int childPosititon) {
-        return this.mBookList.get(groupPosition).getLastestComment();
+        return this.mBookList.get(groupPosition).getLatestComment();
     }
 
     @Override
@@ -169,27 +175,32 @@ public class BookAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(final int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
-
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this.mContext
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.book_item, null);
         }
-        final Comment lastestComment = (Comment) getChild(groupPosition, childPosition);
-        String lastestCommentValue = lastestComment.getValue();
-        int lastestCommentPage = lastestComment.getPage();
 
-        TextView lastestCommentTextView = (TextView) convertView.findViewById(R.id.lastest_comment);
-        TextView pageCommentTextView = (TextView) convertView.findViewById(R.id.comment_page);
-
-        lastestCommentTextView.setText(lastestCommentValue);
-        if (lastestCommentPage == -1 || lastestCommentPage == -2) {
-            pageCommentTextView.setVisibility(View.INVISIBLE);
-        } else {
-            pageCommentTextView.setText(String.valueOf(lastestCommentPage));
-        }
         final Book currentBook = mBookList.get(groupPosition);
+        final Comment latestComment = currentBook.getLatestComment();
+        final String latestCommentDetail = latestComment.getDetail();
+        final int latestCommentPage = latestComment.getPage();
+        final int latestCommentID = currentBook.getLatestCommentID();
+
+        TextView latestCommentDetailTextView = (TextView) convertView.findViewById(R.id.lastest_comment);
+        TextView latestCommentPageTextView = (TextView) convertView.findViewById(R.id.comment_page);
         ImageButton addCommentButton = (ImageButton) convertView.findViewById(R.id.add_comment_button);
+        ImageButton editButton = (ImageButton) convertView.findViewById(R.id.edit_button);
+        ImageButton deleteButton = (ImageButton) convertView.findViewById(R.id.delete_button);
+
+        latestCommentDetailTextView.setText(latestCommentDetail);
+        if (latestCommentPage == -1 || latestCommentPage == -2) {
+            latestCommentPageTextView.setVisibility(View.INVISIBLE);
+        } else {
+            latestCommentPageTextView.setText(String.valueOf(latestCommentPage));
+            latestCommentPageTextView.setVisibility(View.VISIBLE);
+        }
+
         addCommentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -227,12 +238,10 @@ public class BookAdapter extends BaseExpandableListAdapter {
                 dialog.show();
             }
         });
-        ImageButton editButton = (ImageButton) convertView.findViewById(R.id.edit_button);
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final int lastestCommentId = currentBook.getLastestCommentID();
-                if (lastestCommentId == -1) {
+                if (latestCommentID == -1) {
                     Toast.makeText(mContext, "No comment to edit", Toast.LENGTH_SHORT).show();
                 } else {
                     final Dialog dialog = new Dialog(mContext);
@@ -246,9 +255,9 @@ public class BookAdapter extends BaseExpandableListAdapter {
                     });
                     final EditText addCommentBox = (EditText) dialog.findViewById(R.id.add_comment_field);
                     final EditText pageBox = (EditText) dialog.findViewById(R.id.page_edit_field);
-                    addCommentBox.setText(lastestComment.getValue());
-                    if (lastestComment.getPage() != -2 && lastestComment.getPage() != -1) {
-                        pageBox.setText(String.valueOf(lastestComment.getPage()));
+                    addCommentBox.setText(latestCommentDetail);
+                    if (latestCommentPage != -2 && latestCommentPage != -1) {
+                        pageBox.setText(String.valueOf(latestCommentPage));
                     }
                     Button saveButton = (Button) dialog.findViewById(R.id.add_comment_dialog_save_button);
                     saveButton.setOnClickListener(new View.OnClickListener() {
@@ -261,7 +270,7 @@ public class BookAdapter extends BaseExpandableListAdapter {
                                     page = Integer.parseInt(pageBox.getText().toString());
                                 }
                                 Uri currentUri = ContentUris.withAppendedId(BookContract.BookEntry.CONTENT_URI, currentBook.getBookId());
-                                editComment(groupPosition, currentUri, lastestCommentId, comment, page);
+                                editComment(groupPosition, currentUri, latestCommentID, comment, page);
                                 dialog.dismiss();
                                 notifyDataSetChanged();
                             } else {
@@ -274,12 +283,10 @@ public class BookAdapter extends BaseExpandableListAdapter {
                 }
             }
         });
-        ImageButton deleteButton = (ImageButton) convertView.findViewById(R.id.delete_button);
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final int lastestCommentId = currentBook.getLastestCommentID();
-                if (lastestCommentId == -1) {
+                if (latestCommentID == -1) {
                     Toast.makeText(mContext, "No comment to delete", Toast.LENGTH_SHORT).show();
                 } else {
                     AlertDialog alert = new AlertDialog.Builder(mContext)
@@ -288,7 +295,7 @@ public class BookAdapter extends BaseExpandableListAdapter {
                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     Uri currentUri = ContentUris.withAppendedId(BookContract.BookEntry.CONTENT_URI, currentBook.getBookId());
-                                    deleteComment(groupPosition, currentUri, lastestCommentId);
+                                    deleteComment(groupPosition, currentUri, latestCommentID);
                                     notifyDataSetChanged();
                                 }
                             })
@@ -297,6 +304,7 @@ public class BookAdapter extends BaseExpandableListAdapter {
                 }
             }
         });
+
         return convertView;
     }
 

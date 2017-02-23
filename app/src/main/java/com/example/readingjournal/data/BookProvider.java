@@ -7,6 +7,7 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.util.Log;
 
 public class BookProvider extends ContentProvider {
@@ -67,26 +68,26 @@ public class BookProvider extends ContentProvider {
     }
 
     private Uri addBook(Uri uri, ContentValues contentValues) {
-        String name = contentValues.getAsString(BookContract.BookEntry.COLUMN_BOOK_TITLE);
-        if (name == null) {
+        String title = contentValues.getAsString(BookContract.BookEntry.COLUMN_BOOK_TITLE);
+        if (TextUtils.isEmpty(title)) {
             throw new IllegalArgumentException("Book requires a title");
         }
 
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
-
         long id = db.insert(BookContract.BookEntry.TABLE_NAME, null, contentValues);
         if (id == -1) {
             Log.e(LOG_TAG, "Failed to insert row for " + uri);
             return null;
         }
-        BookContract.Working_ID = id;
+        BookContract.WORKING_ID = id;
+
         return ContentUris.withAppendedId(uri, id);
     }
 
     private int updateBook(Uri uri, ContentValues contentValues, String selection, String[] selectionArgs) {
         if (contentValues.containsKey(BookContract.BookEntry.COLUMN_BOOK_TITLE)) {
-            String name = contentValues.getAsString(BookContract.BookEntry.COLUMN_BOOK_TITLE);
-            if (name == null) {
+            String title = contentValues.getAsString(BookContract.BookEntry.COLUMN_BOOK_TITLE);
+            if (TextUtils.isEmpty(title)) {
                 throw new IllegalArgumentException("Book requires a title");
             }
         }

@@ -8,9 +8,7 @@ import com.example.readingjournal.data.BookContract.BookEntry;
 
 public class BookDbHelper extends SQLiteOpenHelper {
     public static final String LOG_TAG = BookDbHelper.class.getSimpleName();
-
     private static final String DATABASE_NAME = "books.db";
-
     private static final int DATABASE_VERSION = 1;
 
     public BookDbHelper(Context context) {
@@ -25,7 +23,8 @@ public class BookDbHelper extends SQLiteOpenHelper {
                 + BookEntry.COLUMN_BOOK_AUTHOR + " TEXT, "
                 + BookEntry.COLUMN_BOOK_DESCRIPTION + " TEXT, "
                 + BookEntry.COLUMN_BOOK_COMMENTS + " TEXT, "
-                + BookEntry.COLUMN_BOOK_RATING + " INTEGER DEFAULT 0);";
+                + BookEntry.COLUMN_BOOK_STATUS + " INTEGER DEFAULT 0, "
+                + BookEntry.COLUMN_BOOK_RATING + " REAL DEFAULT 0);";
 
         db.execSQL(SQL_CREATE_BOOKS_TABLE);
     }

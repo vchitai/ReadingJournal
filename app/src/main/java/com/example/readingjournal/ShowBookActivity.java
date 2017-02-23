@@ -21,7 +21,6 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.chita.readingjournal.R;
 import com.example.readingjournal.data.BookContract;
 
 public class ShowBookActivity extends AppCompatActivity {

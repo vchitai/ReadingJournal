@@ -7,7 +7,8 @@ public class Box implements Serializable {
     private String mBookTitle;
     private String mBookAuthor;
     private String mBookDescription;
-    private int mBookRating;
+    private float mBookRating;
+    private boolean mBookStatus;
     private String mBookComments;
     private int mBookPosition;
 
@@ -17,12 +18,13 @@ public class Box implements Serializable {
         mBookAuthor = book.getBookAuthor();
         mBookDescription = book.getBookDescription();
         mBookRating = book.getBookRating();
+        mBookStatus = book.getBookStatus();
         mBookComments = book.encodeComment();
         mBookPosition = bookPosition;
     }
 
     public Book unbox() {
-        return new Book(mBookId, mBookTitle, mBookAuthor, mBookDescription, mBookComments, mBookRating);
+        return new Book(mBookId, mBookTitle, mBookAuthor, mBookDescription, mBookComments, mBookStatus, mBookRating);
     }
 
     public int getBookPosition() {

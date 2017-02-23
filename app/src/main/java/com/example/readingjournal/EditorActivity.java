@@ -7,16 +7,18 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RatingBar;
-
-import com.example.chita.readingjournal.R;
 
 public class EditorActivity extends AppCompatActivity {
 
     private EditText mTitleEditText;
     private EditText mAuthorEditText;
     private EditText mDescriptionEditText;
+    private CheckBox mStatusCheckBox;
     private RatingBar mRatingBar;
     private Uri mCurrentUri;
     private int mCurrentId;
@@ -31,6 +33,7 @@ public class EditorActivity extends AppCompatActivity {
         mTitleEditText = (EditText) findViewById(R.id.edit_book_title);
         mAuthorEditText = (EditText) findViewById(R.id.edit_book_author);
         mDescriptionEditText = (EditText) findViewById(R.id.edit_book_description);
+        mStatusCheckBox = (CheckBox) findViewById(R.id.status_check_box);
         mRatingBar = (RatingBar) findViewById(R.id.edit_rating_bar);
         Intent intent = getIntent();
         mCurrentUri = intent.getData();
@@ -44,8 +47,20 @@ public class EditorActivity extends AppCompatActivity {
             mTitleEditText.setText(mBook.getBookTitle());
             mAuthorEditText.setText(mBook.getBookAuthor());
             mDescriptionEditText.setText(mBook.getBookDescription());
+            mStatusCheckBox.setChecked(mBook.getBookStatus());
             mRatingBar.setRating(mBook.getBookRating());
         }
+        mRatingBar.setVisibility(View.INVISIBLE);
+        mStatusCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    mRatingBar.setVisibility(View.VISIBLE);
+                } else {
+                    mRatingBar.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
         mCurrentId = intent.getIntExtra("id", -1);
     }
 
@@ -53,9 +68,10 @@ public class EditorActivity extends AppCompatActivity {
         String title = mTitleEditText.getText().toString().trim();
         String description = mDescriptionEditText.getText().toString().trim();
         String author = mAuthorEditText.getText().toString().trim();
+        boolean status = mStatusCheckBox.isChecked();
         float rating = mRatingBar.getRating();
 
-        MainActivity.getListAdapter().saveBook(mCurrentId, mCurrentUri, title, author, description, (int) rating);
+        MainActivity.getListAdapter().saveBook(mCurrentId, mCurrentUri, title, author, description, status,  rating);
     }
 
     @Override
