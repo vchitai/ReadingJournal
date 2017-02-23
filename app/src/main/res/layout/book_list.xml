@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:background="@android:color/white"
     android:minHeight="72dp"
+    android:elevation="3dp"
     android:padding="@dimen/basic_padding_small">
     <ImageView
         android:id="@+id/book_img"
