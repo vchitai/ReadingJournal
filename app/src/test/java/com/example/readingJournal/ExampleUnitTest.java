@@ -1,4 +1,4 @@
-package com.example.readingjournal;
+package com.example.readingJournal;
 
 import org.junit.Test;
 

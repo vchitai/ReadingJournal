@@ -1,4 +1,4 @@
-package com.example.readingjournal;
+package com.example.readingJournal;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

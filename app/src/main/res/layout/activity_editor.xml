@@ -1,92 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_editor"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/basic_padding_small"
-        android:layout_marginLeft="@dimen/basic_padding_small"
-        android:layout_marginTop="@dimen/basic_padding_small"
-        android:text="@string/title"
-        android:textColor="@color/colorPrimary" />
+    <ImageView
+        android:id="@+id/edit_book_img"
+        android:layout_width="@dimen/book_img_width"
+        android:layout_height="@dimen/book_img_height"
+        android:layout_margin="@dimen/basic_padding_medium"
+        android:contentDescription="@string/edit_book_img"
+        android:src="@drawable/landscape" />
 
-    <EditText
-        android:id="@+id/edit_book_title"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/edit_input_book_title_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/basic_padding_small"
-        android:layout_marginLeft="@dimen/basic_padding_small"
-        android:layout_marginTop="@dimen/basic_padding_small"
-        android:inputType="textCapWords" />
+        android:layout_margin="@dimen/basic_padding_small"
+        android:layout_toEndOf="@id/edit_book_img"
+        android:layout_toRightOf="@id/edit_book_img"
+        android:hint="@string/title">
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/edit_book_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapWords" />
+    </android.support.design.widget.TextInputLayout>
 
-    <TextView
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/edit_input_book_author_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/basic_padding_small"
-        android:layout_marginLeft="@dimen/basic_padding_small"
-        android:layout_marginTop="@dimen/basic_padding_small"
-        android:text="@string/author"
-        android:textColor="@color/colorPrimary" />
+        android:layout_below="@id/edit_input_book_title_layout"
+        android:layout_margin="@dimen/basic_padding_small"
+        android:layout_toEndOf="@id/edit_book_img"
+        android:layout_toRightOf="@id/edit_book_img"
+        android:hint="@string/author">
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/edit_book_author"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapWords" />
+    </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:id="@+id/edit_book_author"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/edit_input_book_desc_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/basic_padding_small"
-        android:layout_marginLeft="@dimen/basic_padding_small"
-        android:layout_marginTop="@dimen/basic_padding_small"
-        android:inputType="textCapWords" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/basic_padding_small"
-        android:layout_marginLeft="@dimen/basic_padding_small"
-        android:layout_marginTop="@dimen/basic_padding_small"
-        android:text="@string/desc"
-        android:textColor="@color/colorPrimary" />
-
-    <EditText
-        android:id="@+id/edit_book_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/basic_padding_small"
-        android:layout_marginLeft="@dimen/basic_padding_small"
-        android:layout_marginTop="@dimen/basic_padding_small"
-        android:gravity="top"
-        android:imeOptions="actionDone"
-        android:inputType="textMultiLine"
-        android:minLines="10" />
+        android:layout_below="@id/edit_book_img"
+        android:layout_margin="@dimen/basic_padding_small"
+        android:hint="@string/desc">
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/edit_book_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:imeOptions="actionDone"
+            android:inputType="textMultiLine"
+            android:minLines="10"
+            android:padding="@dimen/basic_padding_small" />
+    </android.support.design.widget.TextInputLayout>
 
     <CheckBox
-        android:id="@+id/status_check_box"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
+        android:id="@+id/edit_status_check_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Finished or not"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/basic_padding_small"
+        android:layout_below="@id/edit_input_book_desc_layout"
         android:layout_marginLeft="@dimen/basic_padding_small"
-        android:layout_marginTop="@dimen/basic_padding_small"
-        android:text="@string/rating"
-        android:textColor="@color/colorPrimary" />
+        android:layout_marginStart="@dimen/basic_padding_small"
+        android:text="@string/status"
+        android:textSize="@dimen/basic_text_size_medium" />
 
     <RatingBar
         android:id="@+id/edit_rating_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/basic_padding_small"
-        android:layout_marginLeft="@dimen/basic_padding_small"
-        android:layout_marginTop="@dimen/basic_padding_small"
-        android:numStars="5" />
-</LinearLayout>
+        android:layout_below="@id/edit_status_check_box"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/basic_padding_small"
+        android:numStars="5"
+        android:progressTint="@android:color/holo_green_dark" />
+</RelativeLayout>

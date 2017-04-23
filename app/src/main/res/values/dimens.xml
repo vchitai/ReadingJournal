@@ -14,5 +14,7 @@
     <dimen name="page_edit_text_min_width">32sp</dimen>
     <dimen name="basic_button_size_small">40dp</dimen>
     <dimen name="basic_button_size_medium">48dp</dimen>
+    <dimen name="book_img_width">88dp</dimen>
+    <dimen name="book_img_height">125dp</dimen>
 </resources>
 

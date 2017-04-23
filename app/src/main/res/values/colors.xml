@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#DD2C00</color>
-    <color name="commentBoxColor">#C5CAE9</color>
+    <color name="basicBackground">#E0E0E0</color>
+    <color name="colorPrimary">#039be5</color>
+    <color name="colorPrimaryDark">#027cb7</color>
+    <color name="colorAccent">#039be5</color>
+    <color name="noteBoxColor">#9ccaff</color>
     <color name="editorColorPrimary">#2196F3</color>
     <color name="editorColorPrimaryDark">#006064</color>
 </resources>

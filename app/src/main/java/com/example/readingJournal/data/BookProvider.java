@@ -1,4 +1,4 @@
-package com.example.readingjournal.data;
+package com.example.readingJournal.data;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;
@@ -11,9 +11,9 @@ import android.text.TextUtils;
 import android.util.Log;
 
 public class BookProvider extends ContentProvider {
-    public static final String LOG_TAG = BookProvider.class.getSimpleName();
-    private static final int BOOKS = 100;
-    private static final int BOOK_ID = 101;
+    public static final  String     LOG_TAG     = BookProvider.class.getSimpleName();
+    private static final int        BOOKS       = 100;
+    private static final int        BOOK_ID     = 101;
     private static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
     static {
@@ -74,7 +74,7 @@ public class BookProvider extends ContentProvider {
         }
 
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
-        long id = db.insert(BookContract.BookEntry.TABLE_NAME, null, contentValues);
+        long           id = db.insert(BookContract.BookEntry.TABLE_NAME, null, contentValues);
         if (id == -1) {
             Log.e(LOG_TAG, "Failed to insert row for " + uri);
             return null;
@@ -113,8 +113,8 @@ public class BookProvider extends ContentProvider {
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
-        final int match = sUriMatcher.match(uri);
+        SQLiteDatabase db    = mDbHelper.getWritableDatabase();
+        final int      match = sUriMatcher.match(uri);
 
         switch (match) {
             case BOOKS:

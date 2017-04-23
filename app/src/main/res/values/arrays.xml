@@ -1,2 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string-array name="genres">
+        <item>@string/action_adventure</item>
+        <item>@string/anthology</item>
+        <item>@string/art</item>
+        <item>@string/autobiographies</item>
+        <item>@string/biographies</item>
+        <item>@string/children</item>
+        <item>@string/comics</item>
+        <item>@string/cookbooks</item>
+        <item>@string/diaries</item>
+        <item>@string/dictionaries</item>>
+        <item>@string/drama</item>
+        <item>@string/encyclopedias</item>
+        <item>@string/fantasy</item>
+        <item>@string/science_fiction</item>
+        <item>@string/guide</item>
+        <item>@string/health</item>
+        <item>@string/history</item>
+        <item>@string/horror</item>
+        <item>@string/self_help</item>
+        <item>@string/journals</item>
+        <item>@string/math</item>
+        <item>@string/mystery</item>
+        <item>@string/poetry</item>
+        <item>@string/prayer</item>
+        <item>@string/religion</item>
+        <item>@string/romance</item>
+        <item>@string/satire</item>
+        <item>@string/science</item>
+        <item>@string/series</item>
+        <item>@string/travel</item>
+        <item>@string/trilogy</item>
+    </string-array>
+</resources>

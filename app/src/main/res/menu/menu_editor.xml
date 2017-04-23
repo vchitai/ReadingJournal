@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.readingjournal.EditorActivity">
+    tools:context="com.example.readingJournal.EditorActivity">
 
     <item
         android:id="@+id/action_save"
@@ -14,5 +14,5 @@
         android:id="@+id/action_discard"
         android:icon="@drawable/ic_close_white_24dp"
         android:title="@string/action_discard"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 </menu>
