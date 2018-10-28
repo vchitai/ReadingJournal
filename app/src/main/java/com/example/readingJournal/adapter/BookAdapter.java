@@ -237,9 +237,9 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
         String    title  = book.getBookBasicInfo().getBookTitle();
         String    author = book.getBookBasicInfo().getBookAuthor();
 
-        TextView       titleTextView    = holder.titleTextView;
-        TextView       authTextView     = holder.authTextView;
-        Button         showBook         = holder.showDetailButton;
+        TextView       titleTextView = holder.titleTextView;
+        TextView       authTextView  = holder.authTextView;
+        Button         showBook      = holder.showDetailButton;
         final CardView quickNoteBox  = holder.quickNoteBox;
         Button         showQuickNote = holder.showQuickNoteButton;
 
@@ -408,9 +408,9 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Context        context    = parent.getContext();
-        LayoutInflater inflater   = LayoutInflater.from(context);
-        View           bookView   = inflater.inflate(R.layout.book_item, parent, false);
+        Context        context  = parent.getContext();
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View           bookView = inflater.inflate(R.layout.book_item, parent, false);
 
         return new ViewHolder(bookView);
     }

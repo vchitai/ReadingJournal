@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/date"
-                android:textSize="@dimen/basic_text_size_small" />
+                android:textSize="@dimen/basic_text_size_small"/>
 
             <TextView
                 android:id="@+id/note_item_page"
@@ -29,10 +29,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/basic_padding_small"
                 android:layout_marginStart="@dimen/basic_padding_small"
-                android:layout_toRightOf="@id/note_item_date"
                 android:layout_toEndOf="@id/note_item_date"
+                android:layout_toRightOf="@id/note_item_date"
                 android:text="@string/page"
-                android:textSize="@dimen/basic_text_size_small" />
+                android:textSize="@dimen/basic_text_size_small"/>
 
             <TextView
                 android:id="@+id/note_item_detail"
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/note_item_date"
                 android:text="@string/note"
-                android:textSize="@dimen/basic_text_size_small" />
+                android:textSize="@dimen/basic_text_size_small"/>
 
             <android.support.v7.widget.ButtonBarLayout
                 android:layout_width="wrap_content"
@@ -55,14 +55,14 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:text="@string/action_edit"
-                    android:textColor="@color/colorAccent" />
+                    android:textColor="@color/colorAccent"/>
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:text="@string/action_delete"
-                    android:textColor="@color/colorAccent" />
+                    android:textColor="@color/colorAccent"/>
             </android.support.v7.widget.ButtonBarLayout>
         </RelativeLayout>
     </android.support.v7.widget.CardView>

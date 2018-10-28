@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/book_item"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:animateLayoutChanges="true"
-    android:orientation="vertical"
-    android:paddingLeft="@dimen/basic_padding_small"
-    android:paddingRight="@dimen/basic_padding_small"
-    android:paddingTop="@dimen/basic_padding_small">
+              android:id="@+id/book_item"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:animateLayoutChanges="true"
+              android:orientation="vertical"
+              android:paddingLeft="@dimen/basic_padding_small"
+              android:paddingRight="@dimen/basic_padding_small"
+              android:paddingTop="@dimen/basic_padding_small">
 
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="80dp"
-        card_view:cardElevation="8dp">
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:minHeight="80dp"
+                                        card_view:cardElevation="8dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -29,7 +29,7 @@
                 android:layout_centerVertical="true"
                 android:layout_margin="4dp"
                 android:contentDescription="@string/show_book_img"
-                android:src="@drawable/landscape" />
+                android:src="@drawable/landscape"/>
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -50,7 +50,7 @@
                     android:scrollHorizontally="true"
                     android:text="@string/title"
                     android:textColor="@android:color/black"
-                    android:textSize="24sp" />
+                    android:textSize="24sp"/>
 
                 <TextView
                     android:id="@+id/book_item_auth"
@@ -62,7 +62,7 @@
                     android:scrollHorizontally="true"
                     android:text="@string/author"
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="@dimen/basic_text_size_large" />
+                    android:textSize="@dimen/basic_text_size_large"/>
             </LinearLayout>
 
             <LinearLayout
@@ -71,15 +71,15 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_toRightOf="@id/book_item_img"
                 android:layout_toEndOf="@id/book_item_img"
+                android:layout_toRightOf="@id/book_item_img"
                 android:orientation="vertical">
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="20dp"
-                    android:background="@color/basicBackground" />
+                    android:background="@color/basicBackground"/>
 
                 <android.support.v7.widget.ButtonBarLayout
                     android:layout_width="wrap_content"
@@ -92,7 +92,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:background="@android:color/transparent"
-                        android:text="@string/quick_note" />
+                        android:text="@string/quick_note"/>
 
                     <Button
                         android:id="@+id/show_book_detail"
@@ -100,7 +100,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:background="@android:color/transparent"
-                        android:text="@string/show_detail" />
+                        android:text="@string/show_detail"/>
                 </android.support.v7.widget.ButtonBarLayout>
             </LinearLayout>
         </RelativeLayout>
@@ -139,7 +139,7 @@
                     android:paddingTop="@dimen/basic_padding_small"
                     android:text="@string/latest_note"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/basic_text_size_medium" />
+                    android:textSize="@dimen/basic_text_size_medium"/>
 
                 <TextView
                     android:id="@+id/latest_note_box_page"
@@ -154,7 +154,7 @@
                     android:paddingTop="@dimen/basic_padding_small"
                     android:text="@string/page"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/basic_text_size_medium" />
+                    android:textSize="@dimen/basic_text_size_medium"/>
 
                 <TextView
                     android:id="@+id/latest_note_box_note"
@@ -167,7 +167,7 @@
                     android:paddingTop="@dimen/basic_padding_small"
                     android:text="@string/latest_note"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/basic_text_size_small" />
+                    android:textSize="@dimen/basic_text_size_small"/>
 
                 <ImageButton
                     android:id="@+id/latest_note_box_delete_button"
@@ -180,9 +180,9 @@
                     android:layout_marginStart="@dimen/basic_padding_small"
                     android:layout_marginTop="@dimen/basic_padding_small"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/ic_action_discard"
                     android:contentDescription="@string/action_delete"
-                    android:tint="@android:color/black" />
+                    android:src="@drawable/ic_action_discard"
+                    android:tint="@android:color/black"/>
 
                 <ImageButton
                     android:id="@+id/latest_note_box_edit_button"
@@ -195,9 +195,9 @@
                     android:layout_toLeftOf="@id/latest_note_box_delete_button"
                     android:layout_toStartOf="@id/latest_note_box_delete_button"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/ic_action_edit"
                     android:contentDescription="@string/action_edit"
-                    android:tint="@android:color/black" />
+                    android:src="@drawable/ic_action_edit"
+                    android:tint="@android:color/black"/>
 
                 <ImageButton
                     android:id="@+id/latest_note_box_add_button"
@@ -210,9 +210,9 @@
                     android:layout_toLeftOf="@id/latest_note_box_edit_button"
                     android:layout_toStartOf="@id/latest_note_box_edit_button"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/ic_action_new_event"
                     android:contentDescription="@string/action_add"
-                    android:tint="@android:color/black" />
+                    android:src="@drawable/ic_action_new_event"
+                    android:tint="@android:color/black"/>
             </RelativeLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>

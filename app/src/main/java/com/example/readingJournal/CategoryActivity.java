@@ -25,7 +25,7 @@ public class CategoryActivity extends AppCompatActivity {
     private RecyclerView          mBookListView;
     private SimpleBookAdapter     mBookListAdapter;
     private String                mCategoryName;
-    private LinearLayoutManager         mLayoutManager;
+    private LinearLayoutManager   mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
